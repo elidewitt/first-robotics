@@ -4,30 +4,29 @@
 
 <head>
 	<title>Infinite Recharge Pit Scouter</title>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" type="text/css" href="./styles.css">
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
-	<style type="text/css">
-		/* Never show the arrows for number inputs */
-		input[type=number]::-webkit-inner-spin-button,
-		input[type=number]::-webkit-outer-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
-	</style>
-</head>
-
-<body>
-	<div class="w3-row-padding"> <!-- Header including team logo and page title -->
-		<div class="w3-col s5">
-			<img src="./images/nac.gif" width=100%>
-		</div>
-		<div class="w3-col s7">
-			<p>
-			<h1>Pit Scouting 2020</h1>
-			</p>
-		</div>
-	</div>
+	<link rel="stylesheet" type="text/css" href="./w3.css">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        /* Never show the arrows for number inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {  
+            -webkit-appearance: none;
+            margin :0;
+        }
+    </style>
+	</head>
+	<body>
+    <div class="w3-row-padding"> <!-- Header including team logo and page title -->
+      <div class="w3-col s5">
+        <img src="./images/nac.gif" width=100%>
+      </div>
+      <div class="w3-col s7">
+		<p>
+        <h1>Pit Scouting 2020</h1>
+		</p>
+      </div>
+    </div>
 	<form id="pitScout" onsubmit="return validateAndSubmit()">
 		<!-- prevent implicit submission of the form-->
 		<button type="submit" disabled style="display: none" aria-hidden="true"></button>

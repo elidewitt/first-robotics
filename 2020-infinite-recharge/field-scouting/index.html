@@ -1,303 +1,265 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Field Scouter 2020</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" type="text/css" href="./styles.css">
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
-  <style type="text/css">
-    /* Always show the arrows for number inputs */
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  </style>
-  <script src="./XMLMethodsForScouting.js"></script>
-  <script src="./submit.js"></script> <!-- References submit file written to submit form -->
-</head>
-
-<body>
-  <div class="w3-row-padding"> <!-- Header including team logo and page title -->
-    <div class="w3-col s4">
-      <img src="./images/nac.gif" width=100%>
-    </div>
-    <div class="w3-col s5">
-      <h1>2020 Scouting App</h1>
-    </div>
-    <div class="w3-col s2">
-      <div class="w3-display-container" style="height:85px;">
-        <div class="w3-center w3-card-4 w3-red w3-round-xlarge w3-display-middle" style="width:100%;">
-          <div id="countDown" style="width:100;">
-            <span id="timeRemaining" style="font-weight:bold;">00:00</span><br>
-            <span id="gameMode" style="font-style:italic;">Pregame</span>
+  <head>
+    <title>Field Scouter 2020</title>
+    <link rel="stylesheet" type="text/css" href="./w3.css">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        /* Always show the arrows for number inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {  
+            -webkit-appearance: none;
+            margin :0;
+        }
+    </style>
+    <script src="./XMLMethodsForScouting.js"></script>
+    <script src="./submit.js"></script> <!-- References submit file written to submit form -->
+  </head>
+  <body>
+    <div class="w3-row-padding"> <!-- Header including team logo and page title -->
+      <div class="w3-col s4">
+        <img src="./images/nac.gif" width=100%>
+      </div>
+      <div class="w3-col s5">
+        <h1>2020 Scouting App</h1>
+      </div>
+      <div class="w3-col s2">
+        <div class="w3-display-container"  style="height:85px;">
+          <div class="w3-center w3-card-4 w3-red w3-round-xlarge w3-display-middle" style="width:100%;">
+            <div id="countDown" style="width:100;">
+              <span id="timeRemaining" style="font-weight:bold;">00:00</span><br>
+              <span id="gameMode" style="font-style:italic;">Pregame</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w3-col s1">
+        <div class="w3-display-container"  style="height:85px;">
+          <div class="w3-center w3-display-middle" style="width:100%;">
+            <button class="w3-button w3-red w3-round-xxlarge" onclick="clearData('clearMe');">×</button>
+          
           </div>
         </div>
       </div>
     </div>
-    <div class="w3-col s1">
-      <div class="w3-display-container" style="height:85px;">
-        <div class="w3-center w3-display-middle" style="width:100%;">
-          <button class="w3-button w3-red w3-round-xxlarge" onclick="clearData('clearMe');">×</button>
-
-        </div>
+    <div class="w3-bar w3-border-bottom w3-border-white" style="display:none; height:8px;" id="stagesBar"> <!-- Current stage bar -->
+			<div id="pregameStage" class="w3-bar-item w3-round-xxlarge" style="width:20%"></div>
+			<div id="autoStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
+			<div id="teleStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
+			<div id="endgameStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
+			<div id="postgameStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
+		</div>
+      <div class="w3-bar w3-black w3-card-4" style="display:none;" id="navbar" > <!-- Navigation bar -->
+        <button id="pregameButton" class="w3-bar-item w3-button tablink w3-red" style="width:20%" onclick="openTab('Pregame', 'pregameButton')">Pregame</button>
+        <button id="autoButton" class="w3-bar-item w3-button tablink" style="width:20%" onclick="openTab('Autonomous', 'autoButton')">Autonomous</button>
+        <button id="teleButton" class="w3-bar-item w3-button tablink" style="width:20%" onclick="openTab('Tele-Op', 'teleButton')">Tele-Op</button>
+        <button id="endgameButton" class="w3-bar-item w3-button tablink" style="width:20%" onclick="openTab('Endgame', 'endgameButton')">Endgame</button>
+        <button id="postgameButton" class="w3-bar-item w3-button tablink" style="width:20%" onclick="openTab('Postgame', 'postgameButton')">Postgame</button>
       </div>
-    </div>
-  </div>
-  <div class="w3-bar w3-border-bottom w3-border-white" style="display:none; height:8px;" id="stagesBar">
-    <!-- Current stage bar -->
-    <div id="pregameStage" class="w3-bar-item w3-round-xxlarge" style="width:20%"></div>
-    <div id="autoStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
-    <div id="teleStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
-    <div id="endgameStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
-    <div id="postgameStage" class="w3-bar-item stages w3-round-xxlarge" style="width:20%"></div>
-  </div>
-  <div class="w3-bar w3-black w3-card-4" style="display:none;" id="navbar"> <!-- Navigation bar -->
-    <button id="pregameButton" class="w3-bar-item w3-button tablink w3-red" style="width:20%"
-      onclick="openTab('Pregame', 'pregameButton')">Pregame</button>
-    <button id="autoButton" class="w3-bar-item w3-button tablink" style="width:20%"
-      onclick="openTab('Autonomous', 'autoButton')">Autonomous</button>
-    <button id="teleButton" class="w3-bar-item w3-button tablink" style="width:20%"
-      onclick="openTab('Tele-Op', 'teleButton')">Tele-Op</button>
-    <button id="endgameButton" class="w3-bar-item w3-button tablink" style="width:20%"
-      onclick="openTab('Endgame', 'endgameButton')">Endgame</button>
-    <button id="postgameButton" class="w3-bar-item w3-button tablink" style="width:20%"
-      onclick="openTab('Postgame', 'postgameButton')">Postgame</button>
-  </div>
-  <form id="FieldScouting" action="#" method="post" onsubmit="return validateAndSubmit()">
-    <!-- Prevent implicit submission of the form -->
-    <button type="submit" disabled style="display: none" aria-hidden="true"></button>
-    <div id="Pregame" class="w3-container tab"> <!-- Pregame tab -->
-      <h2>Pregame</h2>
+      <form id="FieldScouting" action="#" method="post" onsubmit="return validateAndSubmit()">
+      <!-- Prevent implicit submission of the form -->
+      <button type="submit" disabled style="display: none" aria-hidden="true"></button>
+        <div id="Pregame" class="w3-container tab"> <!-- Pregame tab -->
+          <h2>Pregame</h2>
+          <div class="w3-row-padding">
+            <div class="w3-col s6">
+              <div class="w3-card-2 w3-padding w3-container">
+                <h2 class="w3-center w3-red">General Information</h2>
+                <h6>Scouter Name: </h6>
+                <button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('scouter')"><b>X</b></button>
+                <input id="scouter" type="text" class="w3-right" name="scouter" style="width:150px; height:31px;"><br><br>
+                <h6>Match Number: </h6>
+                <button type="button" class="w3-button w3-right w3-tiny w3-red" onclick="clearLocal('matchNum')"><b>X</b></button>
+                <input id="matchNum" type="number" class="w3-right" name="matchNum" style="width:150px; height:31px;"><br><br>
+                <h6>Team Number:  </h6><select id="teamNum" type="number" class="w3-right" name="teamNum" onchange="setTeamName(this.value)">
+                  <option value="" selected disabled></option>
+                </select>
+                <br><br>
+                
+                <h6>Team Name:  </h6><input id="teamName" value="No Team Selected" type="text" class="w3-right" name="teamName" disabled><br><br>
+                
+                <div style="margin-bottom:10px;">
+                  <h6>No Show? </h6><input id="noshow" type="checkbox" class="w3-check w3-right" name="noshow">
+                </div>
+              </div>
+            </div>
+            <div class="w3-col s3">
+              <div class="w3-card-2 w3-container">
+                <h2 class="w3-center w3-red">Alliance</h2>
+                  <p>
+                    <label>Red</label>
+                    <input id="allianceR" type="radio" value="red" class="w3-radio w3-right" name="alliance">
+                  </p>
+                  <p>
+                    <label>Blue</label>
+                    <input id="allianceB" type="radio" value="blue" class="w3-radio w3-right" name="alliance">
+                  </p>
+              </div>
+            </div>
+            <div class="w3-col s3">
+              <div class="w3-card-2 w3-container">
+                <h2 class="w3-center w3-red">Start Position</h2>
+                  <p>
+                    <label>Far</label>
+                    <input id="posF" type="radio" value="far" class="w3-radio w3-right" name="pos">
+                  </p>
+                  <p>
+                    <label>Middle</label>
+                    <input id="posM" type="radio" value="middle" class="w3-radio w3-right" name="pos">
+                  </p>
+                  <p>
+                    <label>Close</label>
+                    <input id="posC" type="radio" value="close" class="w3-radio w3-right" name="pos">
+                  </p>
+              </div>
+            </div>
+          </div>
+          <br><br>
+          <div class="w3-row-padding">
+          <button id="startButton" class="w3-button w3-block w3-red" type="button" onclick="openTab('Autonomous', 'autoButton'); autoTimer();"><b>Start</b></button>
+          </div>
+        </div>
+        <div id="clearMe">
+          <div id="Autonomous" class="w3-container tab" style="display:none"> <!-- Autonomous tab -->
+            <h2>Autonomous</h2>
+            <div id="timeAlert" style="display:none; font-weight:bold; text-shadow:1px 1px 0 #444">
+              <div class="w3-panel-2 w3-indigo w3-center w3-container">
+                <h2>Switch to Tele-Op Now</h2>
+            </div>
+            </div>
+            <div class="w3-row-padding">
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Power Ports</h2>
+                  <h6>Upper:</h6>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('autoUpper', false, 0)"><b>-</b></button>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('autoUpper', true, 99)"><b>+</b></button>
+                  <input disabled id="autoUpper" type="number" value="0" class="w3-right" name="autoUpper" style="width:28px; height:31px;"><br><br>
+                  <h6>Lower:</h6>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('autoLower', false, 0)"><b>-</b></button>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('autoLower', true, 99)"><b>+</b></button>
+                  <input disabled id="autoLower" type="number" value="0" class="w3-right" name="autoLower" style="width:28px; height:31px;">
+                </div>
+              </div>
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Bot Info</h2>
+                  <div style="margin-bottom:10px;">
+                    <h6>Cross Initiation Line? </h6><input id="cross" type="checkbox" class="w3-check w3-right" name="cross">
+                  </div>
+                </div>
+              </div>
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Location</h2>
+                  <h6>Score From Target Zone?</h6><input id="autoTarget" type="checkbox" class="w3-check w3-right" name="autoTarget"><br><br>
+                  <div style="margin-bottom:10px;">
+                    <h6>Score From Trench?</h6><input id="autoTrench" type="checkbox" class="w3-check w3-right" name="autoTrench">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w3-row-padding w3-margin-top">
+              <div class="w3-col s12">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Arena</h2>
+                  <img src="./images/arenaDiagram.png" width="100%"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="Tele-Op" class="w3-container tab" style="display:none"> <!-- Tele-Op tab -->
+            <h2>Tele-Op</h2>
+            <div class="w3-row-padding">
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container" style="margin-bottom:10px;">
+                <h2 class="w3-center w3-red">Bot Info</h2>
+                <h6>Dead Bot?</h6><input id="deadbot" type="checkbox" class="w3-check w3-right" name="deadbot"><br><br>
+                </div>
+              </div>
+            </div>
+            <div class="w3-row-padding">
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Power Ports</h2>
+                  <h6>Upper:</h6>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('teleUpper', false, 0)"><b>-</b></button>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('teleUpper', true, 99)"><b>+</b></button>
+                  <input disabled id="teleUpper" type="number" value=0 class="w3-right" name="teleUpper" style="width:28px; height:31px;"><br><br>
+                  <h6>Lower:</h6>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('teleLower', false, 0)"><b>-</b></button>
+                  <button type="button" class="w3-button w3-right w3-tiny" onclick="incValue('teleLower', true, 99)"><b>+</b></button>
+                  <input disabled id="teleLower" type="number" value=0 class="w3-right" name="teleLower" style="width:28px; height:31px;">
+                </div>
+              </div>
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Control Panel</h2>
+                  <h6>Rotation Control</h6><input id="rotation" type="checkbox" class="w3-check w3-right" name="rotation"><br><br>
+                  <div style="margin-bottom:10px;">
+                    <h6>Position Control</h6><input id="position" type="checkbox" class="w3-check w3-right" name="position">
+                  </div>
+                </div>
+              </div>
+              <div class="w3-col s4">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Location</h2>
+                  <h6>Score From Target Zone?</h6><input id="teleTarget" type="checkbox" class="w3-check w3-right" name="teleTarget"><br><br>
+                  <div style="margin-bottom:10px;">
+                    <h6>Score From Trench?</h6><input id="teleTrench" type="checkbox" class="w3-check w3-right" name="teleTrench">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w3-row-padding w3-margin-top">
+              <div class="w3-col s12">
+                <div class="w3-card-2 w3-padding w3-container">
+                  <h2 class="w3-center w3-red">Arena</h2>
+                  <img src="./images/arenaDiagram.png" width="100%"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="Endgame" class="w3-container tab" style="display:none"> <!-- Endgame tab -->
+            <h2>Endgame</h2>
+            <div class="w3-row-padding">
+              <div class="w3-col s5">
+                <div class="w3-card-2 w3-padding w3-container"  style="margin-bottom:10px;">
+                  <h2 class="w3-center w3-red">Robot Placement</h2>
+                  <p>
+                    <label>None</label>
+                    <input checked id="none" type="radio" value="none" class="w3-radio w3-right" name="placement">
+                  </p>
+                  <p>
+                    <label>Park</label>
+                    <input onclick="document.getElementById('park').checked = true; document.getElementById('hang').checked = false;" id="parkRadio" type="radio" value="park" class="w3-radio w3-right" name="placement">
+                    <input id="park" style="display:none;" type="checkbox" name="park">
+                  </p>
+                  <p>
+                    <label>Hang</label>
+                    <input onclick="document.getElementById('hang').checked = true; document.getElementById('park').checked = false;" id="hangRadio" type="radio" value="hang" class="w3-radio w3-right" name="placement">
+                    <input id="hang" style="display:none;" type="checkbox" name="hang">
+                  </p>
+                  
+                </div>
+              </div>
+              <div class="w3-col s7">
+                <div class="w3-card-2 w3-padding w3-container">
+                <h2 class="w3-center w3-red">Generator Switch</h2>
+                <img src="./images/levelLights.png" style="width:100%"/><br><br>
+                <h6>Is the Switch Level?</h6><input id="level" type="checkbox" class="w3-check w3-right" name="level"><br><br>
+                <h6>Did the Robot Actively Level?</h6><input id="active" type="checkbox" class="w3-check w3-right" name="active"><br><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="Postgame" class="w3-container tab" style="display:none"> <!-- Postgame tab -->
+          <h2>Postgame</h2>
       <div class="w3-row-padding">
-        <div class="w3-col s6">
+        <div class="w3-col s5">
           <div class="w3-card-2 w3-padding w3-container">
-            <h2 class="w3-center w3-red">General Information</h2>
-            <h6>Scouter Name: </h6>
-            <button type="button" class="w3-button w3-right w3-tiny w3-red"
-              onclick="clearLocal('scouter')"><b>X</b></button>
-            <input id="scouter" type="text" class="w3-right" name="scouter" style="width:150px; height:31px;"><br><br>
-            <h6>Match Number: </h6>
-            <button type="button" class="w3-button w3-right w3-tiny w3-red"
-              onclick="clearLocal('matchNum')"><b>X</b></button>
-            <input id="matchNum" type="number" class="w3-right" name="matchNum"
-              style="width:150px; height:31px;"><br><br>
-            <h6>Team Number: </h6><select id="teamNum" type="number" class="w3-right" name="teamNum"
-              onchange="setTeamName(this.value)">
-              <option value="" selected disabled></option>
-            </select>
-            <br><br>
-
-            <h6>Team Name: </h6><input id="teamName" value="No Team Selected" type="text" class="w3-right"
-              name="teamName" disabled><br><br>
-
-            <div style="margin-bottom:10px;">
-              <h6>No Show? </h6><input id="noshow" type="checkbox" class="w3-check w3-right" name="noshow">
-            </div>
-          </div>
-        </div>
-        <div class="w3-col s3">
-          <div class="w3-card-2 w3-container">
-            <h2 class="w3-center w3-red">Alliance</h2>
-            <p>
-              <label>Red</label>
-              <input id="allianceR" type="radio" value="red" class="w3-radio w3-right" name="alliance">
-            </p>
-            <p>
-              <label>Blue</label>
-              <input id="allianceB" type="radio" value="blue" class="w3-radio w3-right" name="alliance">
-            </p>
-          </div>
-        </div>
-        <div class="w3-col s3">
-          <div class="w3-card-2 w3-container">
-            <h2 class="w3-center w3-red">Start Position</h2>
-            <p>
-              <label>Far</label>
-              <input id="posF" type="radio" value="far" class="w3-radio w3-right" name="pos">
-            </p>
-            <p>
-              <label>Middle</label>
-              <input id="posM" type="radio" value="middle" class="w3-radio w3-right" name="pos">
-            </p>
-            <p>
-              <label>Close</label>
-              <input id="posC" type="radio" value="close" class="w3-radio w3-right" name="pos">
-            </p>
-          </div>
-        </div>
-      </div>
-      <br><br>
-      <div class="w3-row-padding">
-        <button id="startButton" class="w3-button w3-block w3-red" type="button"
-          onclick="openTab('Autonomous', 'autoButton'); autoTimer();"><b>Start</b></button>
-      </div>
-    </div>
-    <div id="clearMe">
-      <div id="Autonomous" class="w3-container tab" style="display:none"> <!-- Autonomous tab -->
-        <h2>Autonomous</h2>
-        <div id="timeAlert" style="display:none; font-weight:bold; text-shadow:1px 1px 0 #444">
-          <div class="w3-panel-2 w3-indigo w3-center w3-container">
-            <h2>Switch to Tele-Op Now</h2>
-          </div>
-        </div>
-        <div class="w3-row-padding">
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Power Ports</h2>
-              <h6>Upper:</h6>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('autoUpper', false, 0)"><b>-</b></button>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('autoUpper', true, 99)"><b>+</b></button>
-              <input disabled id="autoUpper" type="number" value="0" class="w3-right" name="autoUpper"
-                style="width:28px; height:31px;"><br><br>
-              <h6>Lower:</h6>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('autoLower', false, 0)"><b>-</b></button>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('autoLower', true, 99)"><b>+</b></button>
-              <input disabled id="autoLower" type="number" value="0" class="w3-right" name="autoLower"
-                style="width:28px; height:31px;">
-            </div>
-          </div>
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Bot Info</h2>
-              <div style="margin-bottom:10px;">
-                <h6>Cross Initiation Line? </h6><input id="cross" type="checkbox" class="w3-check w3-right"
-                  name="cross">
-              </div>
-            </div>
-          </div>
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Location</h2>
-              <h6>Score From Target Zone?</h6><input id="autoTarget" type="checkbox" class="w3-check w3-right"
-                name="autoTarget"><br><br>
-              <div style="margin-bottom:10px;">
-                <h6>Score From Trench?</h6><input id="autoTrench" type="checkbox" class="w3-check w3-right"
-                  name="autoTrench">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w3-row-padding w3-margin-top">
-          <div class="w3-col s12">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Arena</h2>
-              <img src="./images/arenaDiagram.png" width="100%" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="Tele-Op" class="w3-container tab" style="display:none"> <!-- Tele-Op tab -->
-        <h2>Tele-Op</h2>
-        <div class="w3-row-padding">
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container" style="margin-bottom:10px;">
-              <h2 class="w3-center w3-red">Bot Info</h2>
-              <h6>Dead Bot?</h6><input id="deadbot" type="checkbox" class="w3-check w3-right" name="deadbot"><br><br>
-            </div>
-          </div>
-        </div>
-        <div class="w3-row-padding">
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Power Ports</h2>
-              <h6>Upper:</h6>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('teleUpper', false, 0)"><b>-</b></button>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('teleUpper', true, 99)"><b>+</b></button>
-              <input disabled id="teleUpper" type="number" value=0 class="w3-right" name="teleUpper"
-                style="width:28px; height:31px;"><br><br>
-              <h6>Lower:</h6>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('teleLower', false, 0)"><b>-</b></button>
-              <button type="button" class="w3-button w3-right w3-tiny"
-                onclick="incValue('teleLower', true, 99)"><b>+</b></button>
-              <input disabled id="teleLower" type="number" value=0 class="w3-right" name="teleLower"
-                style="width:28px; height:31px;">
-            </div>
-          </div>
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Control Panel</h2>
-              <h6>Rotation Control</h6><input id="rotation" type="checkbox" class="w3-check w3-right"
-                name="rotation"><br><br>
-              <div style="margin-bottom:10px;">
-                <h6>Position Control</h6><input id="position" type="checkbox" class="w3-check w3-right" name="position">
-              </div>
-            </div>
-          </div>
-          <div class="w3-col s4">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Location</h2>
-              <h6>Score From Target Zone?</h6><input id="teleTarget" type="checkbox" class="w3-check w3-right"
-                name="teleTarget"><br><br>
-              <div style="margin-bottom:10px;">
-                <h6>Score From Trench?</h6><input id="teleTrench" type="checkbox" class="w3-check w3-right"
-                  name="teleTrench">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w3-row-padding w3-margin-top">
-          <div class="w3-col s12">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Arena</h2>
-              <img src="./images/arenaDiagram.png" width="100%" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="Endgame" class="w3-container tab" style="display:none"> <!-- Endgame tab -->
-        <h2>Endgame</h2>
-        <div class="w3-row-padding">
-          <div class="w3-col s5">
-            <div class="w3-card-2 w3-padding w3-container" style="margin-bottom:10px;">
-              <h2 class="w3-center w3-red">Robot Placement</h2>
-              <p>
-                <label>None</label>
-                <input checked id="none" type="radio" value="none" class="w3-radio w3-right" name="placement">
-              </p>
-              <p>
-                <label>Park</label>
-                <input
-                  onclick="document.getElementById('park').checked = true; document.getElementById('hang').checked = false;"
-                  id="parkRadio" type="radio" value="park" class="w3-radio w3-right" name="placement">
-                <input id="park" style="display:none;" type="checkbox" name="park">
-              </p>
-              <p>
-                <label>Hang</label>
-                <input
-                  onclick="document.getElementById('hang').checked = true; document.getElementById('park').checked = false;"
-                  id="hangRadio" type="radio" value="hang" class="w3-radio w3-right" name="placement">
-                <input id="hang" style="display:none;" type="checkbox" name="hang">
-              </p>
-
-            </div>
-          </div>
-          <div class="w3-col s7">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Generator Switch</h2>
-              <img src="./images/levelLights.png" style="width:100%" /><br><br>
-              <h6>Is the Switch Level?</h6><input id="level" type="checkbox" class="w3-check w3-right"
-                name="level"><br><br>
-              <h6>Did the Robot Actively Level?</h6><input id="active" type="checkbox" class="w3-check w3-right"
-                name="active"><br><br>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="Postgame" class="w3-container tab" style="display:none"> <!-- Postgame tab -->
-        <h2>Postgame</h2>
-        <div class="w3-row-padding">
-          <div class="w3-col s5">
-            <div class="w3-card-2 w3-padding w3-container">
-              <h2 class="w3-center w3-red">Technical Issues</h2>
+            <h2 class="w3-center w3-red">Technical Issues</h2>
               <h6>Technical Issues?</h6>
               <input id="issues" type="checkbox" class="w3-check w3-right" name="issues"><br>
               <p>Please Specify in Comments</p>
