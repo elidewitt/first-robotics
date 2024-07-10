@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <title>Pit Scout</title>
+    <link rel="shortcut icon" type="image/png" href="../shared/icon.png"/>
+  </head>
+  <body>
+    <br><img width="100%" src="../shared/rapidReact.png"><br>
+    
+    
+    <div class="header">Pit Scouting</div>
+    <form id="scoutingForm" method="post" onsubmit="return validateAndSubmit()">
+      <div id="scoutingInterface"></div>
+      <!-- Prevent implicit submission of the form -->
+      <button type="submit" disabled="" style="display:none" aria-hidden="true"></button>
+      <button type="submit">Submit</button><br><br><br>
+      
+      
+    </form>
+    
+    <script src="../shared/teams.js"></script>
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+    <script src="submission.js"></script>
+  </body>
+  <script>
+    if (localStorage.getItem("Scouter Name")) {
+      //alert("found scouter [" + localStorage.getItem("scouter") + "]");
+      document.getElementById("Scouter Name").value = localStorage.getItem("Scouter Name");
+    }
+  </script>
+</html>
