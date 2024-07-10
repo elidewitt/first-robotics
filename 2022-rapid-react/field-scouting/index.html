@@ -4,10 +4,10 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
     <title>Field Scout</title>
-    <link rel="shortcut icon" type="image/png" href="icon.png"/>
+    <link rel="shortcut icon" type="image/png" href="../shared/icon.png"/>
   </head>
   <body>
-    <br><img width="100%" src="rapidReact.png"><br>
+    <br><img width="100%" src="../shared/rapidReact.png"><br>
 
     <form id="scoutingForm" method="post" onsubmit="return validateAndSubmit()">
       <div id="scoutingInterface"></div>
@@ -27,10 +27,10 @@
     <div id="arenaModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <img width="100%" src="arenaV2.png">
+        <img width="100%" src="../shared/annotated.png">
       </div>
     </div>
-    
+    <script src="../shared/teams.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>
     <script src="methods.js"></script>
@@ -38,12 +38,16 @@
   </body>
   <script>
     if (localStorage.getItem("Pregame-Scouter Name")) {
-      //alert("found scouter [" + localStorage.getItem("scouter") + "]");
       document.getElementById("Pregame-Scouter Name").value = localStorage.getItem("Pregame-Scouter Name");
     }
     if (localStorage.getItem("Pregame-Match Number")) {
-      //alert("found matchNum [" + localStorage.getItem("matchNum") + "]");
       document.getElementById("Pregame-Match Number").value = localStorage.getItem("Pregame-Match Number");
+    }
+    if (localStorage.getItem("Pregame-Alliance")) {
+      document.getElementById("Pregame-Alliance").value = localStorage.getItem("Pregame-Alliance");
+    }
+    if (localStorage.getItem("Pregame-Position")) {
+      document.getElementById("Pregame-Position").value = localStorage.getItem("Pregame-Position");
     }
   </script>
 </html>

@@ -44,6 +44,9 @@ function validateAndSubmit() {
     //manually set local storage for scouter name and match num
     localStorage.setItem("Pregame-Scouter Name", document.getElementById("Pregame-Scouter Name").value);
     localStorage.setItem("Pregame-Match Number", Number(document.getElementById("Pregame-Match Number").value) + 1);
+    localStorage.setItem("Pregame-Alliance", document.getElementById("Pregame-Alliance").value);
+    localStorage.setItem("Pregame-Position", document.getElementById("Pregame-Position").value);
+    
 
     fileName =  "F_" + document.getElementById("Pregame-Match Number").value + "-" + document.getElementById("Pregame-Team Number").value.replace(/ .*/,'') + ".json";
     
