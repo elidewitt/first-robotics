@@ -2,12 +2,12 @@
 function validate() {
   let passed = true;
   let error = "We found issues with the following inputs: \n";
-  
+
   for (elt of document.getElementById("scoutingForm").elements) {
     switch (elt.tagName) {
-      case "SELECT" :
-      case "INPUT" :
-        if(!Boolean(String(elt.value))) {
+      case "SELECT":
+      case "INPUT":
+        if (!Boolean(String(elt.value))) {
           error += " * " + elt.id + "\n";
           passed = false;
         }
@@ -27,8 +27,8 @@ function validateAndSubmit() {
     //manually set local storage for scouter name and match num
     localStorage.setItem("Scouter Name", document.getElementById("Scouter Name").value);
 
-    fileName =  "P_" + document.getElementById("Team Number").value.replace(/ .*/,'') + ".json";
-    
+    fileName = "P_" + document.getElementById("Team Number").value.replace(/ .*/, '') + ".json";
+
     data = createJSON();
 
     fileText = JSON.stringify(data);

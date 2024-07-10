@@ -30,9 +30,9 @@ function validate() {
   let elements = document.getElementById("scouter").elements;
   for (i of elements) {
     switch (i.tagName) {
-      case "SELECT" :
-      case "INPUT" :
-        if(!Boolean(String(i.value)) && (String(i.id) != "Comments")) {
+      case "SELECT":
+      case "INPUT":
+        if (!Boolean(String(i.value)) && (String(i.id) != "Comments")) {
           errorMsg += " * " + i.id + "\n";
           passed = false;
         }

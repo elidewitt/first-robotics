@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
-    <title>Field Scouter</title>
-  </head>
-  <body>
 
-    <form class="scouter" id="scouter" onsubmit="return validateAndSubmit()">
-      <!-- Prevent implicit submission of the form -->
-      <button type="submit" disabled="" style="display: none" aria-hidden="true"></button>
-    </form>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+  <title>Field Scouter</title>
+</head>
 
-    <script src="source.js"></script>
-    <script src="main.js"></script>
-    
-    <script src="submit.js"></script>
-    <script src="xmlMethods.js"></script>
-  </body>
-  <script>
-    // document load - pull in scouter and matchnum from previous
-    if (localStorage.getItem("Scouter Name")) {
-      //alert("found scouter [" + localStorage.getItem("scouter") + "]");
-      document.getElementById("Scouter Name").value = localStorage.getItem("Scouter Name");
-    }
-    if (localStorage.getItem("Match Number")) {
-      //alert("found matchNum [" + localStorage.getItem("matchNum") + "]");
-      document.getElementById("Match Number").value = localStorage.getItem("Match Number");
-    }
-  </script>
+<body>
+
+  <form class="scouter" id="scouter" onsubmit="return validateAndSubmit()">
+    <!-- Prevent implicit submission of the form -->
+    <button type="submit" disabled="" style="display: none" aria-hidden="true"></button>
+  </form>
+
+  <script src="source.js"></script>
+  <script src="main.js"></script>
+
+  <script src="submit.js"></script>
+  <script src="xmlMethods.js"></script>
+</body>
+<script>
+  // document load - pull in scouter and matchnum from previous
+  if (localStorage.getItem("Scouter Name")) {
+    //alert("found scouter [" + localStorage.getItem("scouter") + "]");
+    document.getElementById("Scouter Name").value = localStorage.getItem("Scouter Name");
+  }
+  if (localStorage.getItem("Match Number")) {
+    //alert("found matchNum [" + localStorage.getItem("matchNum") + "]");
+    document.getElementById("Match Number").value = localStorage.getItem("Match Number");
+  }
+</script>
+
 </html>

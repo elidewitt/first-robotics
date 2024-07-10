@@ -27,7 +27,13 @@ div.card {
   background-color: #AA0A0C;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 3vw;
   color: white;
   text-align: center;
@@ -46,7 +52,9 @@ h2 {
   margin: 1vw;
 }
 
-input:not([type=checkbox]), select, textarea {
+input:not([type=checkbox]),
+select,
+textarea {
   font-size: 4vw;
   color: #AA0A0C;
   font-weight: bold;
@@ -98,4 +106,6 @@ p.numButton {
   font-weight: bold;
 }
 
-textarea { resize: vertical; }
+textarea {
+  resize: vertical;
+}

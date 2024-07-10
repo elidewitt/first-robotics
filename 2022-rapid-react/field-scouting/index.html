@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8">
-    <title>Field Scout</title>
-    <link rel="shortcut icon" type="image/png" href="../shared/icon.png"/>
-  </head>
-  <body>
-    <br><img width="100%" src="../shared/rapidReact.png"><br>
 
-    <form id="scoutingForm" method="post" onsubmit="return validateAndSubmit()">
-      <div id="scoutingInterface"></div>
-      <!-- Prevent implicit submission of the form -->
-      <button type="submit" disabled="" style="display:none" aria-hidden="true"></button>
-      <button type="submit">Submit</button><br><br><br>
-      
-      
-    </form>
-    
-    <div id="footer">
-        <button id="collapse" class="footer-content">Collapse All</button>
-        <button id="expand" class="footer-content">Expand All</button>
-        <button id="openArena" class="footer-content">Show Arena</button>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8">
+  <title>Field Scout</title>
+  <link rel="shortcut icon" type="image/png" href="../shared/icon.png" />
+</head>
+
+<body>
+  <br><img width="100%" src="../shared/rapidReact.png"><br>
+
+  <form id="scoutingForm" method="post" onsubmit="return validateAndSubmit()">
+    <div id="scoutingInterface"></div>
+    <!-- Prevent implicit submission of the form -->
+    <button type="submit" disabled="" style="display:none" aria-hidden="true"></button>
+    <button type="submit">Submit</button><br><br><br>
+
+
+  </form>
+
+  <div id="footer">
+    <button id="collapse" class="footer-content">Collapse All</button>
+    <button id="expand" class="footer-content">Expand All</button>
+    <button id="openArena" class="footer-content">Show Arena</button>
+  </div>
+
+  <div id="arenaModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img width="100%" src="../shared/annotated.png">
     </div>
-    
-    <div id="arenaModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <img width="100%" src="../shared/annotated.png">
-      </div>
-    </div>
-    <script src="../shared/teams.js"></script>
-    <script src="data.js"></script>
-    <script src="main.js"></script>
-    <script src="methods.js"></script>
-    <script src="submission.js"></script>
-  </body>
-  <script>
-    if (localStorage.getItem("Pregame-Scouter Name")) {
-      document.getElementById("Pregame-Scouter Name").value = localStorage.getItem("Pregame-Scouter Name");
-    }
-    if (localStorage.getItem("Pregame-Match Number")) {
-      document.getElementById("Pregame-Match Number").value = localStorage.getItem("Pregame-Match Number");
-    }
-    if (localStorage.getItem("Pregame-Alliance")) {
-      document.getElementById("Pregame-Alliance").value = localStorage.getItem("Pregame-Alliance");
-    }
-    if (localStorage.getItem("Pregame-Position")) {
-      document.getElementById("Pregame-Position").value = localStorage.getItem("Pregame-Position");
-    }
-  </script>
+  </div>
+  <script src="../shared/teams.js"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+  <script src="methods.js"></script>
+  <script src="submission.js"></script>
+</body>
+<script>
+  if (localStorage.getItem("Pregame-Scouter Name")) {
+    document.getElementById("Pregame-Scouter Name").value = localStorage.getItem("Pregame-Scouter Name");
+  }
+  if (localStorage.getItem("Pregame-Match Number")) {
+    document.getElementById("Pregame-Match Number").value = localStorage.getItem("Pregame-Match Number");
+  }
+  if (localStorage.getItem("Pregame-Alliance")) {
+    document.getElementById("Pregame-Alliance").value = localStorage.getItem("Pregame-Alliance");
+  }
+  if (localStorage.getItem("Pregame-Position")) {
+    document.getElementById("Pregame-Position").value = localStorage.getItem("Pregame-Position");
+  }
+</script>
+
 </html>

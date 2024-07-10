@@ -16,7 +16,7 @@ for (let i = 0; i < rowLen.length; i++) {
 }
 
 //translates a 2d array into a 1d list of all elements in order
-Array.prototype.translate2d = function() {
+Array.prototype.translate2d = function () {
   let array2d = [];
   for (let i = 0; i < this.length; i++) {
     for (let j = 0; j < this[i].length; j++) {
@@ -87,8 +87,8 @@ for (i in scouter) {
         increment.style.height = "8vw";
         increment.style.backgroundColor = "#ffffff";
         increment.setAttribute("name", k);
-        increment.onclick = function(){
-          document.getElementById(this.getAttribute("name")).value ++;
+        increment.onclick = function () {
+          document.getElementById(this.getAttribute("name")).value++;
         }
         incP = increment.appendChild(addItem("p"));
         incP.classList.add("numButton");
@@ -99,9 +99,9 @@ for (i in scouter) {
         decrement.style.height = "8vw";
         decrement.style.backgroundColor = "#ffffff";
         decrement.setAttribute("name", k);
-        decrement.onclick = function(){
+        decrement.onclick = function () {
           if (document.getElementById(this.getAttribute("name")).value > 0) {
-            document.getElementById(this.getAttribute("name")).value --;
+            document.getElementById(this.getAttribute("name")).value--;
           }
         }
         decP = decrement.appendChild(addItem("p"));
@@ -124,7 +124,7 @@ for (i in scouter) {
       }
     }
   }
-  cardNum ++;
+  cardNum++;
 }
 
 //find submit button as set the innerHTML

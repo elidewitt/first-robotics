@@ -1,56 +1,56 @@
 const ScoutingSource = {
-  "Pregame" : [
+  "Pregame": [
     {
-      "Scouter Name" : ["text"],
-      "Match Number" : ["number"],
-      "Team Number" : ["options", WR_teams],
-      "No Show" : ["checkbox"]
+      "Scouter Name": ["text"],
+      "Match Number": ["number"],
+      "Team Number": ["options", WR_teams],
+      "No Show": ["checkbox"]
     },
     {
-      "Alliance" : ["options", [ "Red", "Blue" ]],
-      "Position" : ["options", ["Close", "Mid", "Far"]]
+      "Alliance": ["options", ["Red", "Blue"]],
+      "Position": ["options", ["Close", "Mid", "Far"]]
     }
   ],
-  "Autonomous" : [
+  "Autonomous": [
     {
-      "Taxi" : ["checkbox"],
-      "Attempted Pickup" : ["checkbox"]
+      "Taxi": ["checkbox"],
+      "Attempted Pickup": ["checkbox"]
     },
     {
-      "Upper" : ["increment"],
-      "Upper Misses" : ["increment"]
+      "Upper": ["increment"],
+      "Upper Misses": ["increment"]
     },
     {
-      "Lower" : ["increment"],
-      "Lower Misses" : ["increment"]
+      "Lower": ["increment"],
+      "Lower Misses": ["increment"]
     }
   ],
-  "Teleop" : [
+  "Teleop": [
     {
-      "Upper" : ["increment"],
-      "Upper Misses" : ["increment"]
+      "Upper": ["increment"],
+      "Upper Misses": ["increment"]
     },
     {
-      "Lower" : ["increment"],
-      "Lower Misses" : ["increment"]
+      "Lower": ["increment"],
+      "Lower Misses": ["increment"]
     },
     {
-      "Shoot from Fender" : ["checkbox"],
-      "Defensive Gameplay" : ["checkbox"]
+      "Shoot from Fender": ["checkbox"],
+      "Defensive Gameplay": ["checkbox"]
     }
   ],
-  "Endgame" : [
+  "Endgame": [
     {
-      "Hangar" : ["options", ["0", "1", "2", "3", "4"]],
-      "Climb Start Time" : ["number"]
+      "Hangar": ["options", ["0", "1", "2", "3", "4"]],
+      "Climb Start Time": ["number"]
     }
   ],
-  "Postgame" : [
+  "Postgame": [
     {
-      "Final Alliance Score" : ["number"]
+      "Final Alliance Score": ["number"]
     },
     {
-      "Technical Issues" : ["textarea"],
+      "Technical Issues": ["textarea"],
       "Referee Involvement": ["checkbox"]
     }
   ]

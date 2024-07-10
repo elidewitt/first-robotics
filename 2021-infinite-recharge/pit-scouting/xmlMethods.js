@@ -20,22 +20,22 @@ function addElementsToRootNode(inputElements, nodeRoot, xmlDoc) {
     element = inputElements[i];
 
     switch (element.tagName) {
-      case "SELECT" :
-      case "TEXTAREA" :
+      case "SELECT":
+      case "TEXTAREA":
         node = xmlDoc.createElement(element.name);
         node.innerHTML = element.value;
         nodeRoot.appendChild(node);
         break;
-      case "INPUT" :
+      case "INPUT":
         switch (element.type) {
-          case "radio" :
+          case "radio":
             if (element.checked) {
               node = xmlDoc.createElement(element.name);
-							node.innerHTML = element.value;
-							nodeRoot.appendChild(node);
+              node.innerHTML = element.value;
+              nodeRoot.appendChild(node);
             }
             break;
-          case "checkbox" :
+          case "checkbox":
             node = xmlDoc.createElement(element.name);
             if (element.checked) {
               node.innerHTML = 1;
@@ -45,21 +45,21 @@ function addElementsToRootNode(inputElements, nodeRoot, xmlDoc) {
             nodeRoot.appendChild(node);
             break;
           case "text":
-  				case "number":
-  				case "date":
-  				case "range":
-  				case "tel":
-  				case "time":
-  				case "url":
-  				case "week":
-  					node = xmlDoc.createElement(element.name);
-  					node.innerHTML = element.value;
-  					nodeRoot.appendChild(node);
-						break;
-          default :
+          case "number":
+          case "date":
+          case "range":
+          case "tel":
+          case "time":
+          case "url":
+          case "week":
+            node = xmlDoc.createElement(element.name);
+            node.innerHTML = element.value;
+            nodeRoot.appendChild(node);
+            break;
+          default:
             break;
         }
-      default :
+      default:
         break;
     }
   }

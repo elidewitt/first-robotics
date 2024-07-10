@@ -8,10 +8,10 @@ function createXmlDoc(rootNodeName) {
 	// create empty document object
 	var xmlDoc = document.implementation.createDocument("", "", null);
 
-    // Create root node using the form name passed in from the calling function as rootNodeName
+	// Create root node using the form name passed in from the calling function as rootNodeName
 	// This node should be appended to the xmlDoc at the end
 	//   note: all of the form elements should be appended as children to this root node and not to the xml doc directly
-    var nodeRoot = xmlDoc.createElement(rootNodeName);
+	var nodeRoot = xmlDoc.createElement(rootNodeName);
 
 	// get the form as an object with all of it's elements
 	var theForm = document.getElementById(rootNodeName);
@@ -20,11 +20,11 @@ function createXmlDoc(rootNodeName) {
 	var inputElements = theForm.elements;
 	addElementsToRootNode(inputElements, nodeRoot, xmlDoc);
 
-    // add root node to document - after all of the input and textarea elements have been appended to the root node
-    xmlDoc.appendChild(nodeRoot);
+	// add root node to document - after all of the input and textarea elements have been appended to the root node
+	xmlDoc.appendChild(nodeRoot);
 
 	return xmlDoc;
-	
+
 } // END createXmlDoc
 
 
@@ -38,12 +38,12 @@ function addElementsToRootNode(inputElements, nodeRoot, xmlDoc) {
 	var element;
 
 	// loop through each input element from the form, create a new node from each, and append the node to the rootNode as a child
-	for (var i = 0; i < inputElements.length ;i++) {
+	for (var i = 0; i < inputElements.length; i++) {
 		element = inputElements[i];
 
 		// Look at tagName first - select and textarea are handled differently from input elements
 		//   all other tagnames are discarded
-		switch(element.tagName) {
+		switch (element.tagName) {
 			// select and textarea are just added as is
 			case "SELECT":
 			case "TEXTAREA":
@@ -55,12 +55,12 @@ function addElementsToRootNode(inputElements, nodeRoot, xmlDoc) {
 			// input tags require additional decision making based on the element type
 			case "INPUT":
 
-				switch(element.type) {
+				switch (element.type) {
 					// radio input elements must be checked to be included
 					//    each instance of a radio element is included in the elements passed to this loop we only want one
 					//    XML node per radio button name so we only take the value of the radio button that is checked
 					case "radio":
-						if (element.checked == true) { 
+						if (element.checked == true) {
 							node = xmlDoc.createElement(element.name);
 							node.innerHTML = element.value;
 							nodeRoot.appendChild(node);
@@ -93,21 +93,21 @@ function addElementsToRootNode(inputElements, nodeRoot, xmlDoc) {
 						nodeRoot.appendChild(node);
 						break;
 					// default is to do nothing for input types that do not go into an XML file ex) submit and button
-					default: 
+					default:
 						break;
 				} // END SWITCH	for element.type
-				
+
 			// default for SWITCH for element.tagName - just discard the other tagnames
-			default: 
+			default:
 				break;
 		} // END SWITCH for element.tagName
 
 
 
 	} // END FOR loop through input elements
-	
+
 	return nodeRoot;
-	
+
 } // END addElementsToRootNode
 
 
@@ -119,15 +119,15 @@ function addElementsToRootNode(inputElements, nodeRoot, xmlDoc) {
 //
 function download(filename, text) {
 
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	element.setAttribute('download', filename);
 
-    element.style.display = 'none';
-    document.body.appendChild(element);
+	element.style.display = 'none';
+	document.body.appendChild(element);
 
-    element.click();
+	element.click();
 
-    document.body.removeChild(element);
-	
+	document.body.removeChild(element);
+
 }// END download

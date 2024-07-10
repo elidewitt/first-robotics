@@ -15,11 +15,11 @@ function openTab(tabName, buttonId) {
 function incValue(elementId, inc, lim) {
   var element = document.getElementById(elementId);
   var value = Number(element.value);
-  
-  if( (value < lim) && inc) {
+
+  if ((value < lim) && inc) {
     document.getElementById(elementId).value = value + 1;
   }
-  else if ( (value > lim) && !inc) {
+  else if ((value > lim) && !inc) {
     document.getElementById(elementId).value = value - 1;
   }
 }
