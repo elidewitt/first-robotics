@@ -1,0 +1,101 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html {
+  background-color: #303030;
+  /* Disables the double tap to zoom in feature on mobile devices */
+  touch-action: manipulation;
+}
+
+div {
+  margin: 5px;
+  margin-top: 0px;
+  padding: 5px;
+  text-align: center;
+  background-color: transparent;
+}
+
+div.tab {
+  border: 1px solid white;
+  background-color: #CD0004;
+}
+
+div.card {
+  background-color: #AA0A0C;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  font-size: 3vw;
+  color: white;
+  text-align: center;
+  padding-right: 1vw;
+  margin: 1vw;
+  font-family: serif;
+}
+
+h1 {
+  font-size: 7vw;
+  margin: 1vw;
+}
+
+h2 {
+  font-size: 4vw;
+  margin: 1vw;
+}
+
+input:not([type=checkbox]), select, textarea {
+  font-size: 4vw;
+  color: #AA0A0C;
+  font-weight: bold;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1vw;
+  height: 8vw;
+}
+
+input[type=checkbox] {
+  zoom: 3;
+  padding: 1vw;
+  margin: 0px;
+}
+
+button[type=submit] {
+  width: 100%;
+  margin-top: 1vw;
+  font-size: 3vw;
+  background-color: #AA0A0C;
+  border: none;
+  color: white;
+  font-family: serif;
+}
+
+div.column {
+  float: left;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 1vw;
+  padding: 0;
+  border: none;
+}
+
+div.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+p.numButton {
+  color: #AA0A0C;
+  padding: 0;
+  font-weight: bold;
+}
+
+textarea { resize: vertical; }
