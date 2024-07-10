@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<html>
+	<head>
+	<title>Infinite Recharge Pit Scouter</title>
+	<link rel="stylesheet" type="text/css" href="./w3.css">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        /* Never show the arrows for number inputs */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {  
+            -webkit-appearance: none;
+            margin :0;
+        }
+    </style>
+	</head>
+	<body>
+    <div class="w3-row-padding"> <!-- Header including team logo and page title -->
+      <div class="w3-col s5">
+        <img src="./images/nac.gif" width=100%>
+      </div>
+      <div class="w3-col s7">
+		<p>
+        <h1>Pit Scouting 2020</h1>
+		</p>
+      </div>
+    </div>
+	<form id="pitScout" onsubmit="return validateAndSubmit()">
+		<!-- prevent implicit submission of the form-->
+		<button type="submit" disabled style="display: none" aria-hidden="true"></button>
+		<h3 class="w3-center w3-black">Who</h3>
+		<div class="w3-row-padding"> <!-- Start New Row -->
+			<div class="w3-col s7">  <!-- Start Left Column -->
+			  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+				<div class="w3-row-padding"> <!-- Start New Row -->
+					<div class="w3-col s6">  <!-- Start Left Column -->
+						<label>Team:&nbsp;</label>
+						<select type="number" id="teamNumber" name="teamNumber" onchange="setTeamName(this.value)" style="height:31px; width:50%">
+							<option value="" selected disabled>
+						</select>
+					</div>
+					<div class="w3-col s6">  <!-- Start Left Column -->
+						<input type="text" id="teamName" name="teamName" class="w3-right" disabled style="height:31px;">
+					</div>
+				</div>
+			  </div> <!-- End Card -->
+			</div> <!-- End Left Column -->
+			<div class="w3-col s5">  <!-- Start Right Column -->
+			  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<label>Scout:</label>
+					<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('scouter')"><b>X</b></button>
+					<input type="text" list="scouts" id="scouter" name="scouter" class="w3-right" style="width:60%; height:31px;">
+					<datalist id="scouts">
+						<option value="" selected disabled></option>
+						<option value="Egan">Egan</option>
+						<option value="Eli">Eli</option>
+						<option value="Hayden">Hayden</option>
+					</datalist>
+			  </div> <!-- End Card -->
+			</div> <!-- End Right Column -->
+		</div> <!-- End Row -->
+		<div>
+			<p />
+		</div>
+		<div class="w3-bar w3-black w3-card-4" id="navbar" > <!-- Navigation bar -->
+        <button type="button" id="infoButton" class="w3-bar-item w3-button tablink w3-red" onclick="openTab('RobotInfo', 'infoButton')">Robot Info</button>
+        <button type="button" id="autonomousButton" class="w3-bar-item w3-button tablink" onclick="openTab('Autonomous', 'autonomousButton')">Autonomous</button>        
+        <button type="button" id="teleopButton" class="w3-bar-item w3-button tablink" onclick="openTab('TeleOp', 'teleopButton')">Tele-op</button>        
+        <button type="button" id="otherButton" class="w3-bar-item w3-button tablink" onclick="openTab('Other', 'otherButton')">Other</button>
+      </div>
+		<br>
+		<div id="RobotInfo" class="w3-container tab">  <!-- Start New Tab -->
+			<div class="w3-row-padding"> <!-- Start New Row -->
+				<div class="w3-col s4">  <!-- Start Left Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Robot Size</h3>
+					<p>
+						<label>Height</label>
+						<!-- <span class="w3-right">&nbsp; inches</span> -->
+						<select type="number" id="botHeiIn" name="botHeiIn" class="w3-right" style="height:31px;"> 
+							<option value="" disabled selected>in</option>
+							<option value=0>0 in</option>
+							<option value=1>1 in</option>
+							<option value=2>2 in</option>
+							<option value=3>3 in</option>
+							<option value=4>4 in</option>
+							<option value=5>5 in</option>
+							<option value=6>6 in</option>
+							<option value=7>7 in</option>
+							<option value=8>8 in</option>
+							<option value=9>9 in</option>
+							<option value=10>10 in</option>
+							<option value=11>11 in</option>
+						</select>
+            <input id="newHeight" name="newHeight" style="display:none;">
+						<!--<span class="w3-right">&nbsp; feet &nbsp;</span> -->
+						<select type="number" id="botHeiFt" name="botHeiFeet" class="w3-right" style="height:31px;">
+							<option value="" disabled selected>ft</option>
+							<option value=0>0 ft</option>
+							<option value=1>1 ft</option>
+							<option value=2>2 ft</option>
+							<option value=3>3 ft</option>
+						</select> 
+						<!--<input type="number" id="robotHeight" name="robotHeight" class="w3-right" style="width:50%">-->
+					</p>
+					<p>
+						<label>Weight</label>
+						<input type="number" id="robotWeight" name="robotWeight" class="w3-right" style="width:50%">
+					</p>
+				  </div> <!-- End Card -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Inspection</h3>
+					<p>
+						<label>Passed?</label>
+						<input type="radio" class="w3-radio" class="w3-right" name="inspection" value="yes" id="inspectionY">&nbsp;Yes&nbsp;
+						<input type="radio" class="w3-radio" class="w3-right" name="inspection" value="no" id="inspectionN">&nbsp;No&nbsp;
+					</p>
+				  </div> <!-- End Card -->
+				</div> <!-- End Left Column -->
+				<div class="w3-col s8">  <!-- Start Right Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Drivetrain</h3>
+					<p>
+						<label>What type of drivetrain?</label>
+						<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('drivetrain')"><b>X</b></button>
+						<input type="text" list="drivetrainOptions" id="drivetrain" name="drivetrain" class="w3-right" style="height:31px;">
+						<datalist id="drivetrainOptions">
+							<option value="" selected disabled></option>
+							<option value="tank">Tank</option>
+							<option value="mecanum">Mecanum</option>
+							<option value="hdrive">H-Drive</option>
+							<option value="butterfly">Butterfly</option>
+							<option value="swerve">Swerve</option>
+							<option value="other">Other (type over)</option>
+						</datalist>
+					</p>
+				  </div> <!-- End Card -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Vision System</h3>
+					<p>
+						<label>What type of system?</label>
+						<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('visionSystem')"><b>X</b></button>
+						<input type="text" list="visionSystemOptions" id="visionSystem" name="visionSystem" class="w3-right" style="height:31px;">
+						<datalist id="visionSystemOptions">
+							<option value="" selected disabled></option>
+							<option value="none">None</option>
+							<option value="webcam">Webcam</option>
+							<option value="limelight">Limelight</option>
+							<option value="vex">Vex Color Sensor</option>
+							<option value="other">Other (type over)</option>
+						</datalist>
+					</p>
+					<p>
+						<label>How is it used?</label><br>
+						<textarea id="visionSystemUse" name="visionSystemUse" class="w3-left" style="width:100%"></textarea>
+					</p>
+				  </div> <!-- End Card -->
+				</div>  <!-- End Right Column -->
+			</div> <!-- End Row -->
+        </div> <!-- END Demographics & Robot Info tab -->
+
+		<div id="Autonomous" class="w3-container tab" style="display:none">
+			<div class="w3-row-padding"> <!-- Start New Row -->
+				<div class="w3-col s8">  <!-- Start Left Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Autonomous Strategy</h3>
+					<p>
+						<h3>Preferred starting place?</h3>
+							None&nbsp;&nbsp;<input type="checkbox" id="startingNone" class="w3-check" name="startingNone"><br>
+							Left&nbsp;&nbsp;<input type="checkbox" id="startingLeft" class="w3-check" name="startingLeft"><br>
+							Middle&nbsp;&nbsp;<input type="checkbox" id="startingMiddle" class="w3-check" name="startingMiddle"><br>
+							Right&nbsp;&nbsp;<input type="checkbox" id="startingRight" class="w3-check" name="startingRight"><br>
+					</p><br>
+					<p>
+						<label>Strategy?</label>
+						<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('autoStrategy')"><b>X</b></button>
+						<input type="text" id="autoStrategy" list="autoStrategyOptions" name="autoStrategy" class="w3-right" style="height:31px;">
+						<datalist id="autoStrategyOptions">
+							<option value="" selected disabled></option>
+							<option value="scoring">Scoring</option>
+							<option value="mobility">Mobility</option>
+							<option value="wait">Wait for tele-op</option>
+							<option value="other">Other (type over)</option>
+						</datalist>
+					</p>
+				  </div> <!-- End Card -->
+<!--				</div> <!-- End Left Column -->
+<!--				<div class="w3-col s6">  <!-- Start Right Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Autonomous Shooting</h3>
+					<p>
+						<label>Preferred location?</label>
+						<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('shootLocationAuto')"><b>X</b></button>
+						<input type="text" list="shootLocationAutoOptions" id="shootLocationAuto" name="shootLocationAuto" class="w3-right" style="height:31px;">
+						<datalist id="shootLocationAutoOptions">
+							<option value="" selected disabled></option>
+							<option value="trench">Trench</option>
+							<option value="zone">Target Zone</option>
+							<option value="no pref">No Preference</option>
+							<option value="other">Other (type over)</option>
+						</datalist>
+					</p>
+					<p>
+						<label>Power port(s)?</label>
+						<select id="scoreLocationAuto" name="scoreLocationAuto" class="w3-right" style="height:31px;">
+							<option value="" selected disabled></option>
+							<option value="upper">Upper Port</option>
+							<option value="lower">Lower Port</option>
+							<option value="both">Both Ports</option>
+							<option value="none">None</option>
+						</select><br>
+					</p>
+				  </div> <!-- End Card -->
+				</div>  <!-- End Right Column -->
+			</div> <!-- End Row -->
+		</div> <!-- End Autonomous tab -->
+
+		<div id="TeleOp" class="w3-container tab" style="display:none">
+			<div class="w3-row-padding"> <!-- Start New Row -->
+				<div class="w3-col s8">  <!-- Start Left Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Tele-op Shooting</h3>
+					<p>
+						<label>Preferred location?</label>
+						<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('shootLocationTele')"><b>X</b></button>
+						<input type="text" list="shootLocationTeleOptions" id="shootLocationTele" name="shootLocationTele" class="w3-right" style="height:31px;">
+						<datalist id="shootLocationTeleOptions">
+							<option value="" selected disabled></option>
+							<option value="trench">Trench</option>
+							<option value="zone">Target Zone</option>
+							<option value="no pref">No Preference</option>
+							<option value="other">Other (type over)</option>
+						</datalist>
+					</p>
+					<p>
+						<label>Power Port(s)?</label>
+						<select id="scoreLocationTele" name="scoreLocationTele" class="w3-right" style="height:31px;">
+							<option value="" selected disabled></option>
+							<option value="upper">Upper Port</option>
+							<option value="lower">Lower Port</option>
+							<option value="both">Both Ports</option>
+							<option value="none">None</option>
+						</select><br>
+					</p>
+				  </div> <!-- End Card -->
+<!--				</div> <!-- End Left Column -->
+<!--				<div class="w3-col s6">  <!-- Start Right Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Control Panel</h3>
+					<p>
+						<label>Rotate control?</label>
+						<input type="radio" class="w3-radio" name="rotateControl" value="yes" id="rotateControlY">&nbsp;Yes&nbsp;
+						<input type="radio" class="w3-radio" name="rotateControl" value="no" id="rotateControlN">&nbsp;No&nbsp;
+					</p>
+					<p>
+						<label>Position control?</label>
+						<input type="radio" class="w3-radio" name="positionControl" value="yes" id="positionControlY">&nbsp;Yes&nbsp;
+						<input type="radio" class="w3-radio" name="positionControl" value="no" id="positionControlN">&nbsp;No&nbsp;
+					</p>
+				  </div> <!-- End Card -->
+				</div>  <!-- End Right Column -->
+			</div> <!-- End Row -->
+		</div> <!-- End Tele-op tab -->
+
+		<div id="Other" class="w3-container tab" style="display:none"> <!-- Start Other tab -->
+    
+    
+    
+			<div class="w3-row-padding"> <!-- Start Top Row -->
+				<div class="w3-col s8">  <!-- Start Left Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Power Cell Management</h3>
+					<p>
+						<label>Max cells at one time?</label>
+						<select type="number" id="ballHold" name="ballHold" class="w3-right" style="height:31px; width:75px;">
+							<option value="" selected disabled></option>
+							<option value=0>0</option>
+							<option value=1>1</option>
+							<option value=2>2</option>
+							<option value=3>3</option>
+							<option value=4>4</option>
+							<option value=5>5</option>
+						</select>
+					</p>
+					<p>
+						<label>How do they load cells?</label>
+						<button type="button" class="w3-button w3-right w3-tiny w3-red"onclick="clearLocal('loadCells')"><b>X</b></button>
+						<input type="text" list="loadCellsOptions" id="loadCells" name="loadCells" class="w3-right" style="height:31px;">
+						<datalist id="loadCellsOptions">
+							<option value="" selected disabled></option>
+							<option value="station">Driver Station</option>
+							<option value="ground">Pick up off Ground</option>
+							<option value="both">Driver Station & Ground</option>
+							<option value="other">Other (type over)</option>
+						</datalist>
+					</p>
+				  </div> <!-- End Card -->
+<!--				</div> -->
+				<!-- End Left Column -->
+				<!-- Start Right Column -->
+<!--				<div class="w3-col s6">  -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">End Game</h3>
+					<p>
+						<label>Can they hang?</label>
+						<input type="radio" class="w3-radio" name="hang" value="yes" id="hangY">&nbsp;Yes&nbsp;
+						<input type="radio" class="w3-radio" name="hang" value="no" id="hangN">&nbsp;No&nbsp;
+					</p>
+					<p>
+						<label>Leveling method (for multiple hanging bots)?</label><br>
+						<textarea id="levelMethod" name="levelMethod" class="w3-right" style="width:100%;"></textarea>
+					</p>
+				  </div> <!-- End Card -->
+				</div>  
+				<!-- End Right Column -->
+			</div> <!-- End Top Row -->
+			<div class="w3-row-padding"> <!-- Start Bottom Row -->
+				<div class="w3-col s8">  <!-- Start Only Column -->
+				  <div class="w3-card-2 w3-padding w3-container"> <!-- Start Card -->
+					<h3 class="w3-center w3-red">Comments</h3>
+					<p>
+						<textarea name="commentsPit" id="commentsPit" style="width:100%"></textarea>
+					</p>
+				  </div> <!-- End Card -->
+					<div class="w3-container">
+						<p>
+							<button class="w3-button w3-round-large w3-red">Submit</button>
+						</p>
+					</div>
+				</div>  
+				<!-- End Only Column -->
+			</div> <!-- End Bottom Row -->
+		</div> <!-- End Other tab -->
+	
+    
+  </form>
+	<div id="schuff" class="w3-modal">
+      <div class="w3-modal-content" style="width:90%;">
+        <div class="w3-container w3-center">
+          <span onclick="document.getElementById('schuff').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+          <div class="w3-padding">
+            <h1 id="hey" style="text-shadow: 1px 1px 1px #444"></h1>
+            <img src="./images/schuff.jpg" style="width:90%;"></img>
+          </div>
+          <p id="error"></p>
+        </div>
+      </div>
+    </div>
+</body>
+<script>
+	// document load - pull in scouter and matchnum from previous
+	if (localStorage.scouter) {
+	  //alert("found scouter [" + localStorage.getItem("scouter") + "]");
+	  document.getElementById("scouter").value = localStorage.getItem("scouter");
+	}
+	
+	function clearLocal(itemName) {
+		localStorage.setItem(itemName, ""); 
+		document.getElementById(itemName).value = "";
+	}
+
+	
+</script>
+<script src="./javascript.js"></script> <!-- References javascript file written to control tab switching -->
+<script src="./teamNumbersAndNames.js"></script> <!-- JS Listing names and numbers of teams  -->
+<script src="./XMLMethodsForScouting.js"></script>
+<script src="./submit.js"></script> <!-- References submit file written to submit form -->
+</html>
