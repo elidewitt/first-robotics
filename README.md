@@ -1,2 +1,4 @@
 # first-robotics
- As part of my tenure as strategy lead on FIRST Robotics Competition team 93 (high school), I developed some scouting solutions. This repository will be there new home. Who are we? 93!!!
+ As part of my tenure as strategy lead on FIRST Robotics Competition team 93 (high school), I developed some scouting solutions. This repository will be their new home. Who are we? 93!!!
+
+When developing these applications, I discovered that I don't like making website forms from scratch. It felt like I was just repeating myself over and over. So, I made a script to build it for me! The information to be generated goes into a JavaScript object, and then some JavaScript code loops through it and generates all the HTML elements. The early years looked a little rough, but I'm proud of what I came up with my senior year in 2022. See it here (It was developed for tablets, I recommend you "inspect element" and use the device emulation): https://elidewitt.github.io/first-robotics/2022-rapid-react/field-scouting/
